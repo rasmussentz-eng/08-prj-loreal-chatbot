@@ -8,41 +8,87 @@
 /* —— body + fonts —— */
 body {
   font-family: "Montserrat", Arial, Helvetica, sans-serif;
-  color: #333;
+  color: #222;
   display: flex;
   justify-content: center;
+  background: linear-gradient(180deg, #f8f4ec 0%, #efe7db 100%);
+  min-height: 100vh;
 }
 
 .page-wrapper {
   width: 90%;
   max-width: 900px;
+  padding: 20px 0 40px;
 }
 
 /* header */
 .site-header {
-  text-align: center;
-  padding-top: 50px;
+  background: #111111;
+  color: #fff;
+  padding: 28px 24px;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+.brand-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  text-align: left;
+}
+
+.brand-logo {
+  width: 92px;
+  height: auto;
+  flex-shrink: 0;
 }
 
 .site-title {
-  font-size: 22px;
-  font-weight: 500;
-  margin-bottom: 10px;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.site-tagline {
+  color: #d8c08d;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.hero-card {
+  background: #ffffff;
+  border: 1px solid #d8c08d;
+  border-radius: 16px;
+  padding: 16px 20px;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.hero-text {
+  color: #555;
+  font-size: 15px;
 }
 
 /* chat window */
 .chatbox {
-  margin: 40px 0;
+  margin: 0 0 40px;
+  background: #fff;
+  border: 1px solid #d8c08d;
+  border-radius: 20px;
+  padding: 18px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
 }
 
 .chat-window {
   height: 360px;
-  border: 1px solid #000;
+  border: 1px solid #e6dfd2;
+  border-radius: 12px;
   padding: 20px;
   font-size: 18px;
   line-height: 1.5;
   overflow-y: auto;
-  background: #fafafa;
+  background: #fcfbf8;
   white-space: pre-line;
 }
 
@@ -69,19 +115,20 @@ body {
 
 .chat-form input {
   flex: 1;
-  padding: 12px;
-  border: 1px solid #ccc;
-  font-size: 18px;
+  padding: 12px 14px;
+  border: 1px solid #d0c7b1;
+  border-radius: 999px;
+  font-size: 16px;
 }
 
 .chat-form input:focus {
-  outline: 2px solid #000;
+  outline: 2px solid #c8a96b;
   outline-offset: 2px;
 }
 
 .chat-form button {
   font-size: 18px;
-  background: #000;
+  background: linear-gradient(135deg, #111111, #c8a96b);
   color: #fff;
   border: none;
   padding: 12px;
@@ -91,7 +138,10 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.3s;
+  border-radius: 50%;
+  transition:
+    transform 0.2s ease,
+    background 0.3s;
 }
 
 .chat-form button .material-icons {
@@ -100,6 +150,7 @@ body {
 
 .chat-form button:hover {
   background: #666666;
+  transform: translateY(-1px);
 }
 
 .chat-form button:focus {
@@ -122,7 +173,7 @@ body {
 
 /* footer */
 .site-footer {
-  margin: 60px 0 40px;
+  margin: 40px 0 20px;
   text-align: center;
   font-size: 14px;
   color: #666;

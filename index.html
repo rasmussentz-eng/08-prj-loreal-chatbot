@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -19,11 +19,31 @@
     <div class="page-wrapper">
       <!------- Header / Branding ------->
       <header class="site-header">
-        <h1 class="site-title">Smart Product Advisor</h1>
+        <div class="brand-block">
+          <img
+            src="img/loreal-logo.png"
+            alt="L'Oréal logo"
+            class="brand-logo"
+          />
+          <div>
+            <h1 class="site-title">L'Oréal Beauty Advisor</h1>
+            <p class="site-tagline">
+              Luxury beauty guidance for skincare, makeup, haircare, and
+              fragrance.
+            </p>
+          </div>
+        </div>
       </header>
 
       <!------- Chat Area ------->
       <main>
+        <section class="hero-card">
+          <p class="hero-text">
+            Ask for product recommendations, routines, or beauty advice tailored
+            to your needs.
+          </p>
+        </section>
+
         <section class="chatbox">
           <div id="chatWindow" class="chat-window">
             <!-- messages will be appended here via JS -->
