@@ -94,16 +94,25 @@ body {
 
 /* messages */
 .msg {
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   line-height: 1.5;
+  padding: 10px 14px;
+  border-radius: 16px;
+  max-width: 80%;
+  word-wrap: break-word;
 }
 
 .msg.user {
-  color: #000;
+  color: #111;
+  background: #f1e3c8;
+  margin-left: auto;
+  text-align: left;
 }
 
 .msg.ai {
-  color: #666666;
+  color: #444;
+  background: #f4f1ea;
+  margin-right: auto;
 }
 
 /* input row */

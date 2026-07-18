@@ -3,6 +3,13 @@ const chatForm = document.getElementById("chatForm");
 const userInput = document.getElementById("userInput");
 const chatWindow = document.getElementById("chatWindow");
 const workerUrl = "https://loreal-chatbot-worker.tzr-a87.workers.dev/";
+const conversation = [
+  {
+    role: "system",
+    content:
+      "You are L'Oréal Beauty Advisor. You can only answer questions related to L'Oréal products, skincare, makeup, haircare, fragrances, beauty routines, and product recommendations. If the user asks something unrelated, politely refuse and explain that you only support L'Oréal beauty topics. Keep answers short, friendly, and beginner-friendly.",
+  },
+];
 
 // Add a welcome message from the assistant
 function addMessage(text, role) {
@@ -28,19 +35,15 @@ chatForm.addEventListener("submit", async (e) => {
   // Show the user's message in the chat window
   addMessage(messageText, "user");
 
+  // Save the user's message in the conversation history
+  conversation.push({ role: "user", content: messageText });
+
   try {
     const response = await fetch(workerUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        messages: [
-          {
-            role: "system",
-            content:
-              "You are L'Oréal Beauty Advisor. Only answer questions about L'Oréal products, skincare, makeup, haircare, fragrances, beauty routines, and product recommendations. If the user asks something unrelated, politely say you can help with L'Oréal beauty topics only.",
-          },
-          { role: "user", content: messageText },
-        ],
+        messages: conversation,
       }),
     });
 
@@ -64,6 +67,9 @@ chatForm.addEventListener("submit", async (e) => {
 
     const reply = data.choices[0].message.content;
     addMessage(reply, "ai");
+
+    // Save the assistant reply so future requests remember it
+    conversation.push({ role: "assistant", content: reply });
   } catch (error) {
     console.error(error);
     addMessage("Sorry, I could not reach the assistant right now.", "ai");
