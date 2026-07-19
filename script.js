@@ -18,6 +18,7 @@ function addMessage(text, role) {
   message.textContent = text;
   chatWindow.appendChild(message);
   chatWindow.scrollTop = chatWindow.scrollHeight;
+  return message;
 }
 
 addMessage("👋 Hello! How can I help you today?", "ai");
@@ -35,6 +36,9 @@ chatForm.addEventListener("submit", async (e) => {
   // Show the user's message in the chat window
   addMessage(messageText, "user");
 
+  // Show a temporary loading message while the assistant responds
+  const thinkingMessage = addMessage("✨ Thinking...", "ai");
+
   // Save the user's message in the conversation history
   conversation.push({ role: "user", content: messageText });
 
@@ -49,6 +53,7 @@ chatForm.addEventListener("submit", async (e) => {
 
     if (!response.ok) {
       const errorText = await response.text();
+      thinkingMessage.remove();
       throw new Error(
         `Request failed with status ${response.status}: ${errorText}`,
       );
@@ -58,13 +63,15 @@ chatForm.addEventListener("submit", async (e) => {
 
     if (!data?.choices?.[0]?.message?.content) {
       console.error("Unexpected response from worker:", data);
+      thinkingMessage.remove();
       const errorMessage =
         data?.error?.message ||
-        "Sorry, I could not reach the assistant right now.";
+        "Sorry, I'm having trouble connecting to the beauty advisor right now. Please try again in a moment.";
       addMessage(errorMessage, "ai");
       return;
     }
 
+    thinkingMessage.remove();
     const reply = data.choices[0].message.content;
     addMessage(reply, "ai");
 
@@ -72,7 +79,11 @@ chatForm.addEventListener("submit", async (e) => {
     conversation.push({ role: "assistant", content: reply });
   } catch (error) {
     console.error(error);
-    addMessage("Sorry, I could not reach the assistant right now.", "ai");
+    thinkingMessage.remove();
+    addMessage(
+      "Sorry, I'm having trouble connecting to the beauty advisor right now. Please try again in a moment.",
+      "ai",
+    );
   }
 
   // Clear the input for the next message
