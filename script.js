@@ -2,7 +2,7 @@
 const chatForm = document.getElementById("chatForm");
 const userInput = document.getElementById("userInput");
 const chatWindow = document.getElementById("chatWindow");
-const workerUrl = "https://loreal-chatbot-worker-v2.tzr-a87.workers.dev/";
+const workerUrl = "https://loreal-chatbot-worker-v3.tzr-a87.workers.dev/";
 const conversation = [
   {
     role: "system",
